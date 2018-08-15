@@ -1,42 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.cajaUno}/>
-        <View style={styles.cajaDos}>
-          <Text>Esta es la caja Dos</Text>
-        </View>
-        <View style={styles.cajaTres}/>
-        <View style={styles.cajaCuatro}/>
-      </View>
-    );
-  }
-}
+import Inicio from './Inicio';
+import Body from './Body';
+import Final from './Final';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
-  cajaUno: {
-    flex: 1,
-    backgroundColor: '#00ff00',
-  },
-  cajaDos: {
-    flex: 6,
-    backgroundColor: '#90ff90',
-    alignItems: 'center',
-    justifyContent: 'center', 
-  },
-  cajaTres: {
-    flex: 15,
-    backgroundColor: '#70ff70',
-  },
-  cajaCuatro: {
-    flex: 1,
-    backgroundColor: '#50ff50',
-  }
 });
+
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      numero: 0,
+      titulo: 'Sumadora',
+    }
+  }
+
+  aumentar = () => {
+    this.setState({
+      numero: this.state.numero +1,
+    })
+  }
+
+  disminuir = () => {
+    this.setState({
+      numero: this.state.numero ? this.state.numero -1 : 0,
+    })
+  }
+
+  render() {
+    return (
+      <Grid style={styles.container}>
+        <Inicio titulo={this.state.titulo}/>
+        <Body numero={this.state.numero}/>
+        <Final sumar={this.aumentar} restar={this.disminuir}/>
+      </Grid>
+    );
+  }
+}
+
+export default App;
