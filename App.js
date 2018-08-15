@@ -25,10 +25,19 @@ export default class App extends React.Component {
   render() {
     return (
       <Grid style={styles.container}>
-        <Row style={styles.cajaTres}><Text>Numero: {this.state.numero}</Text></Row>
-        <Row>
-          <Col style={styles.cajaUno}><Button style={styles.button} title='Aumentar' onPress={() => {this.aumentar()}}/></Col>
-          <Col style={styles.cajaDos}><Button style={styles.button} title='Disminuir' onPress={() => {this.disminuir()}}/></Col>
+        <Row style={styles.cajaHead} size={1}>
+          <Text>Aplicación que incrementa y decrementa un numero</Text>
+        </Row>
+        <Row style={styles.cajaTres} size={4}>
+          <Text>Numero: {this.state.numero}</Text>
+        </Row>
+        <Row size={4}>
+          <Col style={styles.cajaUno}>
+            <Button style={styles.button} title='Aumentar' onPress={() => {this.aumentar()}}/>
+          </Col>
+          <Col style={styles.cajaDos}>
+            <Button style={styles.button} title='Disminuir' onPress={() => {this.disminuir()}}/>
+          </Col>
         </Row>
       </Grid>
     );
@@ -40,20 +49,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  cajaHead: {
+    alignItems: 'flex-end', 
+    justifyContent: 'center',
+  },
   cajaUno: {
-    flex: 1,
     backgroundColor: '#00ff00',
     justifyContent: 'flex-start',
     alignItems: 'center',  
   },
   cajaDos: {
-    flex: 1,
     backgroundColor: '#90ff90',
     justifyContent: 'flex-start',
     alignItems: 'center', 
   },
   cajaTres: {
-    flex: 1,
     backgroundColor: '#50ff50',
     justifyContent: 'center',
     alignItems: 'center',
